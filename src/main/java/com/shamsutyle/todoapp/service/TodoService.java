@@ -25,10 +25,17 @@ public class TodoService {
 				 .stream()
 				 .filter((TodoItem item) -> {return item.getId() == (todoItem.getId());})
 				 .findAny();
-		 
-		 // Remove item from the list and reorder/sort by id...?
-		 // Update item's properties...?
-		 
+		
+		 // Update item's properties
+		 // Is replacing the item more efficient...?
+		 if(locateItem.isPresent()) {
+			TodoItem updatedItem = locateItem.get();
+			updatedItem.setCompleted(todoItem.isCompleted());
+			updatedItem.setId(todoItem.getId());
+			updatedItem.setTask(todoItem.getTask());
+			
+			return updatedItem;
+		}
 		 return null;
 	}
 }

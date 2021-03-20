@@ -31,13 +31,11 @@ public class Controller {
 	}
 	
 	@PutMapping("/api/todoItems/{id}")
-	public ResponseEntity<?> updateTodoItems(@RequestBody TodoItem todoItem) {
+	public ResponseEntity<?> updateTodoItem(@RequestBody TodoItem todoItem) {
 		// Call server -> Get data from server -> Send back to FrontEnd
 		
-		service.updateTodoItem(todoItem);
-		
-		return null;
-		
+		TodoItem updatedItem = service.updateTodoItem(todoItem);
+		return ResponseEntity.ok(updatedItem);
 	}
 	
 	
