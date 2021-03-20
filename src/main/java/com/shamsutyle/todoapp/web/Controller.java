@@ -20,24 +20,30 @@ public class Controller {
 
 	@Autowired
 	private TodoService service;
-	private int idCount = 0;
+	private Integer idCount = 0;
 	//http://localhost:8080
 	
 	@GetMapping("/api/todoItems")
 	public ResponseEntity<?> getAllTodoItems() {
 		List<TodoItem> todoItems = service.getAllTodoItems();
+		if(todoItems.isEmpty()) {
+			TodoItem a = new TodoItem();
+			a.setId(1);
+			a.setTask("Task 1");
+			a.setCompleted(false);
+			todoItems.add(a);
+		}
+		
 		
 		return ResponseEntity.ok(todoItems);
 	}
 	
 	@PutMapping("/api/todoItems/{id}")
-	public ResponseEntity<?> updateTodoItem(@RequestBody TodoItem todoItem) {
+	public ResponseEntity<?> updateTodoItem(@PathVariable Integer id, @RequestBody TodoItem todoItem) {
 		// Call server -> Get data from server -> Send back to FrontEnd
 		
-		TodoItem updatedItem = service.updateTodoItem(todoItem);
-		if(updatedItem == null) {
-			// TODO: 
-		}
+		TodoItem updatedItem = service.updateTodoItem(id, todoItem);
+
 		return ResponseEntity.ok(updatedItem);
 	}
 	

@@ -20,10 +20,10 @@ public class TodoService {
 		return repo.getAllTodoItems();
 	}
 
-	public TodoItem updateTodoItem(TodoItem todoItem) {
+	public TodoItem updateTodoItem(Integer id, TodoItem todoItem) {
 		 Optional<TodoItem> locateItem = repo.getAllTodoItems()
 				 .stream()
-				 .filter((TodoItem item) -> {return item.getId() == (todoItem.getId());})
+				 .filter(item -> item.getId().equals(id))
 				 .findAny();
 		
 		 // Update item's properties
@@ -31,7 +31,7 @@ public class TodoService {
 		 if(locateItem.isPresent()) {
 			TodoItem updatedItem = locateItem.get();
 			updatedItem.setCompleted(todoItem.isCompleted());
-			updatedItem.setId(todoItem.getId());
+			//updatedItem.setId(todoItem.getId());
 			updatedItem.setTask(todoItem.getTask());
 			
 			return updatedItem;
