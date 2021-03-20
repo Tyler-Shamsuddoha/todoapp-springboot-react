@@ -17,7 +17,12 @@ const TodoItem = (props) => {
     useEffect(() => {
         fetch(`http://localhost:8080/api/todoItems${todoItem.id}`,{
             method: 'PUT',
+            headers: {
+                "content-type": "application/json",
+            },
             body: JSON.stringify(todoItem), // This is the data we are sending back to the server side (A to do item)
+        }).then(responce => responce.json()).then(data => {
+            setTodoItem(data)
         });
         console.log("The Todo Item has changed", todoItem);
     },[todoItem]);

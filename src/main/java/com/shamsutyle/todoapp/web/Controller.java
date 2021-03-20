@@ -35,6 +35,9 @@ public class Controller {
 		// Call server -> Get data from server -> Send back to FrontEnd
 		
 		TodoItem updatedItem = service.updateTodoItem(todoItem);
+		if(updatedItem == null) {
+			// TODO: 
+		}
 		return ResponseEntity.ok(updatedItem);
 	}
 	
