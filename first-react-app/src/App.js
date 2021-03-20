@@ -23,11 +23,17 @@ function App() {
         });
     }
   });
+
+  function addNewItem() {
+    fetch('http://localhost:8080/')
+
+  }
   
+
   return (
   <>
   <div>
-    <button> Add new To Do Item </button>
+    <button onClick={addNewItem}> Add new To Do Item </button>
   </div>
 
     <div>
