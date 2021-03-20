@@ -1,6 +1,8 @@
 package com.shamsutyle.todoapp.service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +20,15 @@ public class TodoService {
 		return repo.getAllTodoItems();
 	}
 
-	public void updateTodoItem(TodoItem todoItem) {
-		
+	public TodoItem updateTodoItem(TodoItem todoItem) {
+		 Optional<TodoItem> locateItem = repo.getAllTodoItems()
+				 .stream()
+				 .filter((TodoItem item) -> {return item.getId() == (todoItem.getId());})
+				 .findAny();
+		 
+		 // Remove item from the list and reorder/sort by id...?
+		 // Update item's properties...?
+		 
+		 return null;
 	}
 }
