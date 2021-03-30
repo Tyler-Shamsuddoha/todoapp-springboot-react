@@ -19,23 +19,35 @@ public class TodoService {
 	public List<TodoItem> getAllTodoItems () {
 		return repo.getAllTodoItems();
 	}
+	
+	public TodoItem createTodoItem() {
+		TodoItem newItem = new TodoItem();
+		newItem.setCompleted(false);
+		
+		newItem = repo.save(newItem);
+		newItem.setTask("Task #" + newItem.getId());
+		return newItem;
+	}
 
 	public TodoItem updateTodoItem(Integer id, TodoItem todoItem) {
-		 Optional<TodoItem> locateItem = repo.getAllTodoItems()
+		Optional<TodoItem> locateItem = repo.getAllTodoItems()
 				 .stream()
 				 .filter(item -> item.getId().equals(id))
 				 .findAny();
 		
 		 // Update item's properties
 		 // Is replacing the item more efficient...?
+		 
 		 if(locateItem.isPresent()) {
 			TodoItem updatedItem = locateItem.get();
-			updatedItem.setCompleted(todoItem.isCompleted());
-			//updatedItem.setId(todoItem.getId());
+			updatedItem.setCompleted(!todoItem.getCompleted());
 			updatedItem.setTask(todoItem.getTask());
+			
+			System.out.println("Returning updated item");
+			System.out.println(updatedItem.toString());
 			
 			return updatedItem;
 		}
 		 return null;
-	}
+	}	
 }

@@ -8,8 +8,7 @@ function App() {
   const [todoItems, setTodoItems] = useState(null)
 
   useEffect(() => {
-    // This is the onLoad() section
-    // do something when app loads up
+    // This is the onLoad/do something when app loads up
     console.log("Loaded up");
 
     // If there are no todoItems, fetch items
@@ -18,33 +17,32 @@ function App() {
         .then((response) => response.json())
         .then((data) => {
           console.log("To do items list: ", data);
-          // Update the 
+          // Update items to show them
           setTodoItems(data);
         });
     }
-  });
+  }, [todoItems]);
 
-  function addNewItem() {
-    fetch('http://localhost:8080/')
-
+  function addNewItem(){
+    fetch("http://localhost:8080/")
   }
-  
+
 
   return (
-  <>
-  <div>
-    <button onClick={addNewItem}> Add new To Do Item </button>
-  </div>
-
+    <>
     <div>
-      {todoItems
-        ? todoItems.map(todoItem => {
-          return <TodoItem key={todoItem.id} data={todoItem} />;
-        }) : 'Need to fetch items...'}
+      <button onClick={addNewItem}> Add New Item </button>
     </div>
-  </>
-  );
 
+      <div>
+        {todoItems
+          ? todoItems.map((todoItem) => {
+            return <TodoItem key={todoItem.id} data={todoItem} />;
+          })
+          : 'Need to fetch items...'}
+      </div>
+    </>
+  );
 }
 
 export default App;

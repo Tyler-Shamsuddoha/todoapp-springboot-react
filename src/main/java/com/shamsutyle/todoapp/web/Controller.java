@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,29 +21,31 @@ public class Controller {
 
 	@Autowired
 	private TodoService service;
-	private Integer idCount = 0;
-	//http://localhost:8080
 	
 	@GetMapping("/api/todoItems")
 	public ResponseEntity<?> getAllTodoItems() {
 		List<TodoItem> todoItems = service.getAllTodoItems();
-		if(todoItems.isEmpty()) {
-			TodoItem a = new TodoItem();
-			a.setId(1);
-			a.setTask("Task 1");
-			a.setCompleted(false);
-			todoItems.add(a);
-		}
-		
 		
 		return ResponseEntity.ok(todoItems);
 	}
+	
+	@PostMapping("/api/todoItems")
+	public ResponseEntity<?> createTodoItem(){
+		TodoItem newItem = service.createTodoItem();
+		
+		return ResponseEntity.ok(newItem);
+	}
+	
+	
+	
 	
 	@CrossOrigin("http://localhost:3000")
 	@PutMapping("/api/todoItems/{id}")
 	public ResponseEntity<?> updateTodoItem(@PathVariable Integer id, @RequestBody TodoItem todoItem) {
 		// Call server -> Get data from server -> Send back to FrontEnd
 		
+		System.out.println("TodoItem is " + todoItem.getCompleted());
+
 		TodoItem updatedItem = service.updateTodoItem(id, todoItem);
 
 		return ResponseEntity.ok(updatedItem);

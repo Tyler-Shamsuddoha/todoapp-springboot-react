@@ -18,11 +18,17 @@ public class TodoItem {
 	public void setTask(String task) {
 		this.task = task;
 	}
-	public boolean isCompleted() {
+	public boolean getCompleted() {
 		return isCompleted;
 	}
 	public void setCompleted(boolean isCompleted) {
 		this.isCompleted = isCompleted;
+	}
+	
+	@Override
+	public String toString() {
+	return "ID = " + this.id + " task = " + this.task +
+		" isCompleted = " + this.isCompleted;
 	}
 	
 	
