@@ -34,7 +34,6 @@ public class TodoService {
 				 .stream()
 				 .filter(item -> item.getId().equals(id))
 				 .findAny();
-		
 		 // Update item's properties
 		 // Is replacing the item more efficient...?
 		 
