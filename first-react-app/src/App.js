@@ -32,6 +32,8 @@ function App() {
     }).then((response)  => response.json()) // promise to take the response and translate it into javascript object, returns another promise
       .then((newTodoItem) => {
         console.log(newTodoItem);
+        // Update the state, to show the recieved TodoItem
+        setTodoItems([...todoItems, newTodoItem]);
       });
   }
 

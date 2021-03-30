@@ -39,14 +39,11 @@ public class TodoService {
 		 
 		 if(locateItem.isPresent()) {
 			TodoItem updatedItem = locateItem.get();
-			updatedItem.setCompleted(!todoItem.getCompleted());
+			updatedItem.setCompleted(todoItem.getCompleted());
 			updatedItem.setTask(todoItem.getTask());
-			
-			System.out.println("Returning updated item");
-			System.out.println(updatedItem.toString());
-			
 			return updatedItem;
 		}
+		 System.out.println("returning null");
 		 return null;
 	}	
 }

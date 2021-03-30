@@ -43,9 +43,6 @@ public class Controller {
 	@PutMapping("/api/todoItems/{id}")
 	public ResponseEntity<?> updateTodoItem(@PathVariable Integer id, @RequestBody TodoItem todoItem) {
 		// Call server -> Get data from server -> Send back to FrontEnd
-		
-		System.out.println("TodoItem is " + todoItem.getCompleted());
-
 		TodoItem updatedItem = service.updateTodoItem(id, todoItem);
 
 		return ResponseEntity.ok(updatedItem);

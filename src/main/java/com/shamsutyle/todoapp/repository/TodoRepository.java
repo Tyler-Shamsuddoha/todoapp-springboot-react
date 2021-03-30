@@ -15,14 +15,11 @@ public class TodoRepository {
 	
 	public List<TodoItem> getAllTodoItems (){
 		if(todoItems.size() == 0) {
-			
 			// Add a default TodoItem to test with
-			
 			TodoItem a = new TodoItem();
 			a.setId(idCount++);
-			a.setCompleted(true);
-			a.setTask("Task 1");
-			
+			a.setCompleted(false);
+			a.setTask("Task #1");
 			todoItems.add(a);
 		}
 		return this.todoItems;
