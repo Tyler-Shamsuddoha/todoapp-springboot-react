@@ -24,7 +24,15 @@ function App() {
   }, [todoItems]);
 
   function addNewItem(){
-    fetch("http://localhost:8080/")
+    fetch("http://localhost:8080/api/todoItems", {
+      headers: {
+        'content-type': 'application/json'
+      },
+      method: 'POST' 
+    }).then((response)  => response.json()) // promise to take the response and translate it into javascript object, returns another promise
+      .then((newTodoItem) => {
+        console.log(newTodoItem);
+      });
   }
 
 
