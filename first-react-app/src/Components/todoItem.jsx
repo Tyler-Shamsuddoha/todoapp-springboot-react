@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react'
+import React, {useEffect, useState } from 'react'
 
 const TodoItem = (props) => {
     // Never update the getter in REACT, instead use the setter method
@@ -9,11 +9,12 @@ const TodoItem = (props) => {
     // When state changes for TodoItem, update data in server to represent change
 
     useEffect(() => {
+        console.log("Item changed",todoItem);
         if (isDirty) {
             fetch(`http://localhost:8080/api/todoItems/${todoItem.id}`, {
                 method: "PUT",
                 headers: {
-                    "content-type": "application/json"
+                    'content-type': 'application/json'
                 },
                 body: JSON.stringify(todoItem),
             })
@@ -24,23 +25,17 @@ const TodoItem = (props) => {
                 });
         }
     }, [todoItem, isDirty]);
-
-    function updateComplete() {
-        setDirty(true);
-        setTodoItem({ ...todoItem, isCompleted: !todoItem.isCompleted });
-        console.log("To do item has been updated");
-        console.log(todoItem);
-    }
-
+    
     return (
-        <>
+        <div>
             <input
                 type="checkbox"
                 checked={todoItem.isCompleted}
-                onChange={updateComplete}
+                onChange={() => setTodoItem({...todoItem, isCompleted: !todoItem.isCompleted})}
             />
+            {/* <input type = 'text' value ={todoItem.task}/> */}
             <span>{todoItem.task}</span>
-        </>
+        </div>
     );
 };
 

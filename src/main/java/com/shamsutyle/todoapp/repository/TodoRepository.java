@@ -18,7 +18,7 @@ public class TodoRepository {
 			// Add a default TodoItem to test with
 			TodoItem a = new TodoItem();
 			a.setId(idCount++);
-			a.setCompleted(false);
+			a.setCompleted(true);
 			a.setTask("Task #1");
 			todoItems.add(a);
 		}
