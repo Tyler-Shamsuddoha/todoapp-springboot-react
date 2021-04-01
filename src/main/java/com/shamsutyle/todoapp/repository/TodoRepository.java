@@ -10,7 +10,7 @@ import com.shamsutyle.todoapp.domain.TodoItem;
 @Repository
 public class TodoRepository {
 	
-	private Integer idCount = 0;
+	private Integer idCount = 1;
 	private List<TodoItem> todoItems = new ArrayList<>();
 	
 	public List<TodoItem> getAllTodoItems (){

@@ -36,10 +36,6 @@ public class Controller {
 		return ResponseEntity.ok(newItem);
 	}
 	
-	
-	
-	
-	@CrossOrigin("http://localhost:3000")
 	@PutMapping("/api/todoItems/{id}")
 	public ResponseEntity<?> updateTodoItem(@PathVariable Integer id, @RequestBody TodoItem todoItem) {
 		// Call server -> Get data from server -> Send back to FrontEnd
