@@ -27,7 +27,7 @@ const TodoItem = (props) => {
     }, [todoItem, isDirty]);
 
     function updateTask (event){
-        console.log("Updated a todo item");
+        setDirty(true);
         setTodoItem({...todoItem, task: event.target.value});
     }
     
