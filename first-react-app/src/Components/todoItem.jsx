@@ -25,6 +25,11 @@ const TodoItem = (props) => {
                 });
         }
     }, [todoItem, isDirty]);
+
+    function updateTask (event){
+        console.log("Updated a todo item");
+        setTodoItem({...todoItem, task: event.target.value});
+    }
     
     return (
         <div>
@@ -33,8 +38,7 @@ const TodoItem = (props) => {
                 checked={todoItem.isCompleted}
                 onChange={() => setTodoItem({...todoItem, isCompleted: !todoItem.isCompleted})}
             />
-            {/* <input type = 'text' value ={todoItem.task}/> */}
-            <span>{todoItem.task}</span>
+            <input type = 'text' value ={todoItem.task} onChange={updateTask}/>
         </div>
     );
 };
